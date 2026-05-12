@@ -1,4 +1,5 @@
-package LinkedList;
+package LinkedList.SingleLinkedList;
+
 
 public class LinkedListDemo {
     private Node head;
