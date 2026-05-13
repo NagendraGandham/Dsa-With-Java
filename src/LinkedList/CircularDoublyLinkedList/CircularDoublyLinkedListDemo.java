@@ -42,20 +42,6 @@ public class CircularDoublyLinkedListDemo {
         return head;
     }
 
-    void traversalcdll(Node head){
-        if(head==null){
-            System.out.println("List is empty");
-            return;
-        }
-        Node temp=head;
-        do{
-            System.out.print(temp.data+" -> ");
-            temp=temp.next;
-        }while(temp!=head);
-        System.out.println();
-        System.out.println("Size : "+size);
-    }
-
     Node insertAtPos(int data,int pos){
         if(pos<=0){
             System.out.println("position is not valid\n");
@@ -119,6 +105,128 @@ public class CircularDoublyLinkedListDemo {
         size++;
         return head;
     }
+
+    Node deleteFromHead(Node head){
+        if(head==null){
+            System.out.println("nothing to delete\n");
+            return head;
+        }
+        if(head.next==head){
+            head.next=null;
+            head.prev=null;
+            head=null;
+            tail=null;
+            size--;
+            return head;
+        }
+        Node temp=head;
+        head=head.next;
+        temp.next.prev=temp.prev;
+        temp.prev.next=temp.next;
+        temp.prev=null;
+        temp.next=null;
+        size--;
+        this.head=head;
+        return head;
+
+    }
+
+    Node deleteFromEnd(Node head){
+        if(head==null){
+            System.out.println("Nothing to delete\n");
+            return head;
+        }
+        if(head==head.next){
+            head.prev=null;
+            head.next=null;
+            head=null;
+            size--;
+            tail=null;
+            return head;
+        }
+        Node temp=head.prev;
+        head.prev=temp.prev;
+        temp.prev.next=temp.next;
+        temp.next=null;
+        temp.prev=null;
+        size--;
+        tail=head.prev;
+        return head;
+    }
+
+    Node deleteFromPos(Node head,int pos){
+        if(head==null ){
+            System.out.println("List is empty nothing to delete\n");
+            return head;
+        }
+        if(pos==1){
+            return  deleteFromHead(head);
+        }
+        if(pos<=0){
+            System.out.println("inavlid position");
+            return head;
+        }
+        int currentpos=1;
+        Node temp=head;
+        do{
+            if(pos==currentpos){
+                break;
+            }
+            temp=temp.next;
+            currentpos++;
+        }while(temp!=head);
+        if(temp==head){
+            System.out.println("Invalid position");
+            return head;
+        }
+        temp.prev.next=temp.next;
+        temp.next.prev=temp.prev;
+        temp.next=null;
+        temp.prev=null;
+        size--;
+        return head;
+    }
+
+    Node deleteByValue(Node head,int value){
+        if(head==null){
+            System.out.println("List is empty nothing to delete\n");
+            return head;
+        }
+        if(head.data==value){
+            return  deleteFromHead(head);
+        }
+        Node temp=head;
+        do{
+            if(temp.data==value){
+                break;
+            }
+            temp=temp.next;
+        }while(temp!=head);
+        if (temp == head) {
+            System.out.println("There is no node with that value");
+            return head;
+        }
+        temp.prev.next=temp.next;
+        temp.next.prev=temp.prev;
+        temp.next=null;
+        temp.prev=null;
+        size--;
+        return head;
+    }
+    void traversalcdll(Node head){
+        if(head==null){
+            System.out.println("List is empty");
+            return;
+        }
+        Node temp=head;
+        do{
+            System.out.print(temp.data+" <-> ");
+            temp=temp.next;
+        }while(temp!=head);
+        System.out.println();
+        System.out.println("Size : "+size);
+    }
+
     void reverseTraversalcdll(Node head){
         if(head==null){
             System.out.println("List is empty");
@@ -126,11 +234,12 @@ public class CircularDoublyLinkedListDemo {
         }
         Node temp=head.prev;
         do{
-            System.out.print(temp.data+" -> ");
+            System.out.print(temp.data+" <-> ");
             temp=temp.prev;
         }while(temp!=head.prev);
         System.out.println();
     }
+
 
     public static void main(String[] args) {
         Node head;
@@ -147,5 +256,16 @@ public class CircularDoublyLinkedListDemo {
         head=cdll.insertAfterValue(1090,67);
         cdll.traversalcdll(head);
         cdll.reverseTraversalcdll(head);
+        head=cdll.deleteFromHead(head);
+        cdll.traversalcdll(head);
+        head=cdll.deleteFromEnd(head);
+        cdll.traversalcdll(head);
+        head=cdll.deleteFromPos(head,6);
+        head=cdll.deleteFromPos(head,3);
+        cdll.traversalcdll(head);
+        head=cdll.deleteByValue(head,3);
+        head=cdll.deleteByValue(head,1090);
+        head=cdll.deleteByValue(head,67);
+        cdll.traversalcdll(head);
     }
 }
