@@ -14,7 +14,6 @@ This repository is created for learning, practicing, and improving problem-solvi
     - Circular Doubly Linked List
 - Stack
 - Queue
-- Deque
 - Trees
 - Binary Tree
 - Binary Search Tree
