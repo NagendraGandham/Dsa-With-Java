@@ -48,6 +48,6 @@ public class InfixToPostfixClass {
 
     public static void main(String[] args) {
         String expression="a+b+c";
-        System.out.println("The infix expr is:"+expression+"\nthe postfix expr is:"+infixToPostfix(expression));;
+        System.out.println("The infix expr is:"+expression+"\nthe postfix expr is:"+infixToPostfix(expression));
     }
 }
