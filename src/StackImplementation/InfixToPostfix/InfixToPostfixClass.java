@@ -1,5 +1,6 @@
 package StackImplementation.InfixToPostfix;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class InfixToPostfixClass {
@@ -33,7 +34,7 @@ public class InfixToPostfixClass {
                 stack.pop();
             }
             else{
-                while(!stack.isEmpty() && stack.peek()=='(' && (precedence(ch) < precedence(stack.peek())
+                while(!stack.isEmpty() && stack.peek()!='(' && (precedence(ch) < precedence(stack.peek())
                         || precedence(ch)==precedence(stack.peek()) && !isRightAssociative(ch))){
                         output.append(stack.pop());
                 }
@@ -47,7 +48,8 @@ public class InfixToPostfixClass {
     }
 
     public static void main(String[] args) {
-        String expression="a+b+c";
+        Scanner sc=new Scanner(System.in);
+        String expression=sc.nextLine();
         System.out.println("The infix expr is:"+expression+"\nthe postfix expr is:"+infixToPostfix(expression));
     }
 }
