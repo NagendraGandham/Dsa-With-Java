@@ -11,7 +11,7 @@ public class EvaluatePrefixWithMultiDigit {
     static int compute(int op1,int op2,char op){
         switch(op){
             case '+':return op1+op2;
-            case '_':return op1-op2;
+            case '-':return op1-op2;
             case '*':return op1*op2;
             case '/':return op1/op2;
             case '^':return (int)Math.pow(op1,op2);
