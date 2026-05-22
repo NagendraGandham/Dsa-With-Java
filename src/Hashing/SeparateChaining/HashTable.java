@@ -20,7 +20,7 @@ public class HashTable {
     }
 
     boolean search (int key){
-        int index=hash(key);
+        int index=hash(key) ;
         Node temp=hashTable[index];
         while(temp!=null){
             if(temp.data==key){
