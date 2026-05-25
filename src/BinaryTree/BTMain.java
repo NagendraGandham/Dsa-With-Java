@@ -10,5 +10,9 @@ public class BTMain {
         root=tree.createTree(sc);
         System.out.println(root.data);
         tree.displayTree(root,0);
+        tree.inOrderTraversal(root);
+        System.out.println();
+        tree.preOrderTraversal(root);
+        System.out.println();
     }
 }

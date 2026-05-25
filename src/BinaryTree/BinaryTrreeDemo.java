@@ -35,4 +35,31 @@ public class BinaryTrreeDemo {
         System.out.println(node.data);
         displayTree(node.left,level+1);
     }
+
+    void inOrderTraversal(Node node){
+        if(node==null){
+            return;
+        }
+        inOrderTraversal(node.left);
+        System.out.print(node.data+" ");
+        inOrderTraversal(node.right);
+    }
+
+    void preOrderTraversal(Node node){
+        if(node==null){
+            return;
+        }
+        System.out.print(node.data+" ");
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
+    }
+
+    void postOrderTraversal(Node node){
+        if(node==null){
+            return;
+        }
+        postOrderTraversal(node.left);
+        postOrderTraversal(node.right);
+        System.out.print(node.data+" ");
+    }
 }
