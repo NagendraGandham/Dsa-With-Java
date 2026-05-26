@@ -1,6 +1,8 @@
 package BinaryTree;
 
 import java.sql.SQLOutput;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class BinaryTrreeDemo {
@@ -61,5 +63,23 @@ public class BinaryTrreeDemo {
         postOrderTraversal(node.left);
         postOrderTraversal(node.right);
         System.out.print(node.data+" ");
+    }
+
+    void levelOrderTraversal(Node root){
+        if(root == null){
+            return;
+        }
+        Queue<Node> queue=new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            Node ele=queue.poll();
+            System.out.print(ele.data+" ");
+            if(ele.left!=null){
+                queue.offer(ele.left);
+            }
+            if(ele.right!=null){
+                queue.offer(ele.right);
+            }
+        }
     }
 }

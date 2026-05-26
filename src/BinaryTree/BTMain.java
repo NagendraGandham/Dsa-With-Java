@@ -14,5 +14,6 @@ public class BTMain {
         System.out.println();
         tree.preOrderTraversal(root);
         System.out.println();
+        tree.levelOrderTraversal(root);
     }
 }
