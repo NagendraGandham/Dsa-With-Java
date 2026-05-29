@@ -4,6 +4,7 @@ import java.sql.SQLOutput;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTrreeDemo {
     Node createTree(Scanner sc){
@@ -81,5 +82,56 @@ public class BinaryTrreeDemo {
                 queue.offer(ele.right);
             }
         }
+    }
+
+    void iterativePreOrderTraversal(Node node){
+        Stack<Node> stack=new Stack<>();
+        while(node!=null || !stack.isEmpty()){
+            if(node!=null){
+                System.out.print(node.data+" ");
+                stack.push(node);
+                node=node.left;
+            }
+            else{
+                node=stack.pop();
+                node=node.right;
+            }
+        }
+    }
+
+    void iterativeInorderTraversal(Node node){
+        Stack<Node> stack=new Stack<>();
+        while(node!=null || !stack.isEmpty()){
+            while(node!=null){
+                stack.push(node);
+                node=node.left;
+            }
+            if(!stack.isEmpty() ){
+                Node node1=stack.pop();
+                System.out.print(node1.data+" ");
+                    node=node1.right;
+
+            }
+        }
+    }
+
+    void iterativePostOrderTraversal(Node node){
+        Stack<Node> stack=new Stack<>();
+        while(node!=null || !stack.isEmpty()){
+            while(node!=null){
+                stack.push(node);
+                stack.push(node.right);
+                node=node.left;
+                if(node==null){
+                    node=stack.pop();
+                }
+            }
+            while(stack.isEmpty()){
+                System.out.println(stack.pop().data+" ");
+            }
+
+
+        }
+
     }
 }
