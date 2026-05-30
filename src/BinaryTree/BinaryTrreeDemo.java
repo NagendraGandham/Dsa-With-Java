@@ -117,21 +117,20 @@ public class BinaryTrreeDemo {
 
     void iterativePostOrderTraversal(Node node){
         Stack<Node> stack=new Stack<>();
+        Node visited=null;
         while(node!=null || !stack.isEmpty()){
             while(node!=null){
                 stack.push(node);
-                stack.push(node.right);
                 node=node.left;
-                if(node==null){
-                    node=stack.pop();
-                }
             }
-            while(stack.isEmpty()){
-                System.out.println(stack.pop().data+" ");
+            Node pnode=stack.peek();
+            if(pnode.right!=null && pnode.right!=visited){
+                node= pnode.right;
             }
-
-
+            else{
+                visited=stack.pop();
+                System.out.print(visited.data+" ");
+            }
         }
-
     }
 }
