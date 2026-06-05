@@ -44,7 +44,7 @@ public class CreateBst {
         inOrdertraversal(node.right);
     }
 
-    Boolean search(Node node,int value){
+    boolean search(Node node,int value){
         if(node==null){
             return false;
         }
@@ -59,7 +59,7 @@ public class CreateBst {
         }
     }
 
-    Boolean searchUsingIterating(Node node,int value){
+    boolean searchUsingIterating(Node node,int value){
         while(node!=null){
             if(node.data==value){
                 return true;
@@ -99,5 +99,41 @@ public class CreateBst {
             prev.right=new Node(value);
         }
         return root;
+    }
+
+    Node deleteNode(Node node,int value){
+        if(node==null){
+            return node;
+        }
+        if(value>node.data){
+            node.right=deleteNode(node.right,value);
+        }
+        else if(node.data>value){
+            node.left=deleteNode(node.left,value);
+        }
+        else{
+            if(node.right==null && node.left==null){
+                return null;
+            }
+            else if(node.left==null){
+                return node.right;
+            }
+            else if(node.right==null){
+                return node.left;
+            }
+            else{
+                Node rep=find(node.right);
+                node.data=rep.data;
+                node.right=deleteNode(node.right,rep.data);
+            }
+        }
+        return node;
+    }
+
+    Node find(Node node){
+        while(node.left!=null){
+            node=node.left;
+        }
+        return node;
     }
 }
