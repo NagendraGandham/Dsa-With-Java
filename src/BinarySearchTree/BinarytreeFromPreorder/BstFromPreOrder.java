@@ -1,5 +1,7 @@
 package BinarySearchTree.BinarytreeFromPreorder;
 
+import java.util.Stack;
+
 public class BstFromPreOrder {
     Node root;
     BstFromPreOrder(){
@@ -15,6 +17,31 @@ public class BstFromPreOrder {
         node.left=preorderTreeConstruction(preorder,ind, node.data);
         node.right=preorderTreeConstruction(preorder,ind,up);
         return node;
+    }
+
+
+    public Node preorderTreeIterative(int[] preorder){
+        if(preorder.length==0){
+            return null;
+        }
+        Node root=new Node(preorder[0]);
+        Stack<Node> stack=new Stack<>();
+        stack.push(root);
+        for(int i=1;i<preorder.length;i++){
+            if(preorder[i]<stack.peek().data){
+                stack.peek().left=new Node(preorder[i]);
+                stack.push(stack.peek().left);
+            }
+            else{
+                Node parent=null;
+                while(!stack.isEmpty() && preorder[i]>stack.peek().data){
+                    parent=stack.pop();
+                }
+                parent.right=new Node(preorder[i]);
+                stack.push(parent.right);
+            }
+        }
+        return root;
     }
 
     void displayTree(Node node, int level){
