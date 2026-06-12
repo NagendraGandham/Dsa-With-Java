@@ -22,6 +22,37 @@ public class MinHeapDemo {
         }
     }
 
+    void deleteMin(){
+        if(size==0){
+            System.out.println("heap is Empty");
+            return;
+        }
+        int min=heapList.get(0);
+        heapList.set(0,heapList.getLast());
+        heapList.removeLast();
+        size=heapList.size();
+        int i=0;
+        while(true){
+            int minIndex=i;
+            int left=leftChild(i);
+            int right=rightChild(i);
+            if(left<size && heapList.get(left)<heapList.get(minIndex)){
+                minIndex=left;
+            }
+            if(right<size && heapList.get(right)<heapList.get(minIndex)){
+                minIndex=right;
+            }
+            if(minIndex!=i){
+                swap(i,minIndex);
+                i=minIndex;
+            }
+            else{
+                break;
+            }
+
+        }
+    }
+
     int parent(int i){
         return (i-1)/2;
     }

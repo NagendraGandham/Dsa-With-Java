@@ -9,5 +9,7 @@ public class Main {
         heap.display();
         heap.insert(60);
         heap.display();
+        heap.deleteMax();
+        heap.display();
     }
 }

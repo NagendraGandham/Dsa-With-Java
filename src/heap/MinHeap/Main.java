@@ -13,5 +13,11 @@ public class Main {
         heap.display();
         heap.insert(6);
         heap.display();
+        heap.deleteMin();
+        heap.deleteMin();
+        heap.display();
+        heap.deleteMin();
+        heap.deleteMin();
+        heap.display();
     }
 }
