@@ -28,6 +28,12 @@ public class MaxHeap {
         heapArr[j]=temp;
     }
 
+    void swapping(int i,int j,int[] arr){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+
     void insert(int value){
         heapArr[size]=value;
         int i=size;
@@ -38,6 +44,18 @@ public class MaxHeap {
         }
     }
 
+    void buildHeap(int[] arr,int size){
+        for(int i=1;i<size;i++){
+            insertArr(arr,i);
+        }
+    }
+
+    void insertArr(int[] arr,int i){
+        while(i>0 && arr[parent(i)]<arr[i]){
+            swapping(i,parent(i),arr);
+            i=parent(i);
+        }
+    }
     void deleteMax(){
         if(size==0){
             System.out.println("heap is Empty");
@@ -71,6 +89,13 @@ public class MaxHeap {
     void display(){
         for(int i=0;i<size;i++){
             System.out.print(heapArr[i]+" ");
+        }
+        System.out.println();
+    }
+
+    void display(int[] arr){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
         }
         System.out.println();
     }
