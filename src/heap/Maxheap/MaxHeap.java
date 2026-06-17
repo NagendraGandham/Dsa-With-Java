@@ -50,12 +50,45 @@ public class MaxHeap {
         }
     }
 
-    void insertArr(int[] arr,int i){
+    void insertArr(int[] arr,int i){//top down
         while(i>0 && arr[parent(i)]<arr[i]){
             swapping(i,parent(i),arr);
             i=parent(i);
         }
     }
+
+    void buildHeapBottomUp(int[] arr,int size){
+        int startIndex=(size/2)-1;
+        for(int i=startIndex;i>=0;i--){
+            heapify(arr,i,size);
+        }
+    }
+
+    //bottom up
+    void heapify(int[] arr,int i,int size){
+        while(true){
+            int maxIndex=i;
+            int left=leftChild(i);
+            int right=rightChild(i);
+            if(left<size && arr[left]>arr[maxIndex]){
+                maxIndex=left;
+            }
+            if(right<size && arr[right]>arr[maxIndex]){
+                maxIndex=right;
+            }
+            if(maxIndex!=i){
+                swapping(i,maxIndex,arr);
+                i=maxIndex;
+
+            }
+            else{
+                break;
+            }
+        }
+
+    }
+
+
     void deleteMax(){
         if(size==0){
             System.out.println("heap is Empty");
