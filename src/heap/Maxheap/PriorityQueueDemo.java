@@ -11,6 +11,7 @@ public class PriorityQueueDemo {
         pq.offer(10);
         pq.offer(2);
         System.out.println(pq);
+
         pq.remove();
 
         System.out.println(pq  );
