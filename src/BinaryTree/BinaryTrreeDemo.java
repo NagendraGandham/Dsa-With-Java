@@ -31,6 +31,7 @@ public class BinaryTrreeDemo {
         if(node==null){
             return;
         }
+
         displayTree(node.right,level+1);
         for(int i=0;i<level;i++){
             System.out.print("    ");
