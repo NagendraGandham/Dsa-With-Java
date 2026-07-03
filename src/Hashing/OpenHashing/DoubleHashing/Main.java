@@ -10,6 +10,7 @@ public class Main {
         hashTable.insert(22);
         hashTable.insert(45);
 
+
         hashTable.display();
 
         System.out.println(hashTable.search(25));
