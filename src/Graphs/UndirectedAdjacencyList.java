@@ -1,5 +1,6 @@
 package Graphs;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 
 class Pair{
@@ -20,7 +21,7 @@ record Edge(int node,int weight){}
 
 public class UndirectedAdjacencyList {
 //    private ArrayList<Integer>[] adjList;
-    private ArrayList<Edge>[] adjList;
+private ArrayList<AbstractMap.SimpleEntry<Integer,Integer>>[] adjList;
     private int vertices;
 
     UndirectedAdjacencyList(int vertices){
@@ -35,8 +36,10 @@ public class UndirectedAdjacencyList {
 
 
     public void addEdge(int u,int v,int weight){
-        adjList[u].add(new Edge(v,weight));
-        adjList[v].add(new Edge(u,weight));
+//        adjList[u].add(new Edge(v,weight));
+//        adjList[v].add(new Edge(u,weight));
+        adjList[u].add(new AbstractMap.SimpleEntry<>(v, weight));
+        adjList[v].add(new AbstractMap.SimpleEntry<>(u, weight));
     }
 
     public void printGraph(){
