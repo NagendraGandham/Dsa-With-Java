@@ -16,9 +16,11 @@ class Pair{
     }
 }
 
+record Edge(int node,int weight){}
+
 public class UndirectedAdjacencyList {
 //    private ArrayList<Integer>[] adjList;
-    private ArrayList<Pair>[] adjList;
+    private ArrayList<Edge>[] adjList;
     private int vertices;
 
     UndirectedAdjacencyList(int vertices){
@@ -31,9 +33,10 @@ public class UndirectedAdjacencyList {
     }
 
 
+
     public void addEdge(int u,int v,int weight){
-        adjList[u].add(new Pair(v,weight));
-        adjList[v].add(new Pair(u,weight));
+        adjList[u].add(new Edge(v,weight));
+        adjList[v].add(new Edge(u,weight));
     }
 
     public void printGraph(){
