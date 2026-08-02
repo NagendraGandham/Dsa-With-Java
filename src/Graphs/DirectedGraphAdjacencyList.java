@@ -8,6 +8,7 @@ public class DirectedGraphAdjacencyList {
     private ArrayList<Integer>[] adjList;
     private int vertices;
 
+
     DirectedGraphAdjacencyList(int vertices){
         this.vertices=vertices;
         adjList=new ArrayList[vertices];
