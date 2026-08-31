@@ -81,7 +81,22 @@ public class UnDirectedGraphUsingListOfList {
             }
         }
     }
+    void dfsHelper(int start,boolean[] visited){
+        System.out.print(start+" ");
+        for(int i:adjList.get(start)){
+            if(!visited[i]){
+                visited[i]=true;
+                dfsHelper(i,visited);
+            }
+        }
+    }
 
+    void dfsRecursive(){
+        int start=0;
+        boolean[] visited=new boolean[adjList.size()];
+        visited[start]=true;
+        dfsHelper(start,visited);
+    }
 
     public static void main(String[] args){
        UnDirectedGraphUsingListOfList graph=new UnDirectedGraphUsingListOfList(6);
@@ -98,5 +113,7 @@ public class UnDirectedGraphUsingListOfList {
         graph.bfsTraversal(0);
         System.out.println();
         graph.dfsTraversalUsingStack(0);
+        System.out.println();
+        graph.dfsRecursive();
     } 
 }
