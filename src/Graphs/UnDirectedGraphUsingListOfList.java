@@ -1,9 +1,6 @@
 package Graphs;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class UnDirectedGraphUsingListOfList {
 
@@ -54,6 +51,35 @@ public class UnDirectedGraphUsingListOfList {
                 }
             }
         }
+
+    }
+
+    void dfsTraversalUsingStack(int start){
+        boolean[] visited=new boolean[adjList.size()];
+        Stack<Integer> stack=new Stack<>();
+        stack.push(start);
+//        visited[start]=true;
+//        while(!stack.isEmpty()){
+//            int u=stack.pop();
+//            System.out.print(u+" ");
+//            for(int neighbour:adjList.get(u)){
+//                if(!visited[neighbour]){
+//                    visited[neighbour]=true;
+//                    stack.push(neighbour);
+//                }
+//            }0 3 5 4 2 1
+        while(!stack.isEmpty()){
+            int u=stack.pop();
+            if(!visited[u]){
+                visited[u]=true;
+                System.out.print(u+" ");
+            }
+            for(int i:adjList.get(u)){
+                if(!visited[i]){
+                    stack.push(i);
+                }
+            }
+        }
     }
 
 
@@ -70,8 +96,7 @@ public class UnDirectedGraphUsingListOfList {
         graph.addVertex();
         graph.printGraph();
         graph.bfsTraversal(0);
-    }
-
-
-
+        System.out.println();
+        graph.dfsTraversalUsingStack(0);
+    } 
 }
