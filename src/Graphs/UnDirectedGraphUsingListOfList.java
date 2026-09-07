@@ -96,10 +96,16 @@ public class UnDirectedGraphUsingListOfList {
         boolean[] visited=new boolean[adjList.size()];
         visited[start]=true;
         dfsHelper(start,visited);
+        for(int i=0;i<adjList.size();i++){
+            if(!visited[i]) {
+                visited[i] = true;
+                dfsHelper(i, visited);
+            }
+        }
     }
 
     public static void main(String[] args){
-       UnDirectedGraphUsingListOfList graph=new UnDirectedGraphUsingListOfList(6);
+       UnDirectedGraphUsingListOfList graph=new UnDirectedGraphUsingListOfList(8);
         graph.addEdge(0,1);
         graph.addEdge(0,3);
         graph.addEdge(1,2);
@@ -108,7 +114,7 @@ public class UnDirectedGraphUsingListOfList {
         graph.addEdge(2,4);
         graph.addEdge(3,4);
         graph.addEdge(3,5);
-        graph.addVertex();
+        graph.addEdge(6,7);
         graph.printGraph();
         graph.bfsTraversal(0);
         System.out.println();
