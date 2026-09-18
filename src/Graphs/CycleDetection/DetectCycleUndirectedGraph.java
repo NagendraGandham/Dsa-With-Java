@@ -9,11 +9,34 @@ public class DetectCycleUndirectedGraph {
     static boolean hasCycle(List<List<Integer>> graph,int v){
         boolean[] visited=new boolean[v];
         for(int i=0;i<v;i++){
-            if(!visited[i]) {
-                if (bfs(i, graph, visited)) {
+            if(!visited[i]){
+                if(dfs(i,-1,graph,visited)){
                     return true;
                 }
             }
+        }
+        return false;
+//        for(int i=0;i<v;i++){
+//            if(!visited[i]) {
+//                if (bfs(i, graph, visited)) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+    }
+
+    static boolean dfs(int start,int parent,List<List<Integer>> graph,boolean[] visited){
+        visited[start]=true;
+        for(int neighbour:graph.get(start)){
+            if(!visited[neighbour]) {
+                if (dfs(neighbour, start, graph, visited)) {
+                    return true;
+                }
+            }
+                else if(neighbour  !=parent){
+                    return true;
+                }
         }
         return false;
     }
@@ -58,8 +81,8 @@ public class DetectCycleUndirectedGraph {
             addEdge(graph,2,5);
             addEdge(graph,2,4);
             addEdge(graph,4,5  );
-            addEdge(graph,5,6);
-            addEdge(graph,6,7);
+//            addEdge(graph,5,6);
+//            addEdge(graph,6,7);
 
 
             boolean result=hasCycle(graph,V);
