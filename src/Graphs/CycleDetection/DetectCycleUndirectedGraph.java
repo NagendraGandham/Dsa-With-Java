@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Queue;
 
 public class DetectCycleUndirectedGraph {
-    static boolean hasCycle(List<List<Integer>> graph,int v){
-        boolean[] visited=new boolean[v];
-        for(int i=0;i<v;i++){
-            if(!visited[i]){
-                if(dfs(i,-1,graph,visited)){
-                    return true;
-                }
-            }
-        }
-        return false;
+//    static boolean hasCycle(List<List<Integer>> graph,int v){
+//        boolean[] visited=new boolean[v];
+//        for(int i=0;i<v ;i++){
+//            if(!visited[i]){
+//                if(dfs(i,-1,graph,visited)){
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
 //        for(int i=0;i<v;i++){
 //            if(!visited[i]) {
 //                if (bfs(i, graph, visited)) {
@@ -24,7 +24,7 @@ public class DetectCycleUndirectedGraph {
 //            }
 //        }
 //        return false;
-    }
+//    }
 
     static boolean dfs(int start,int parent,List<List<Integer>> graph,boolean[] visited){
         visited[start]=true;
@@ -62,7 +62,63 @@ public class DetectCycleUndirectedGraph {
         return false;
     }
 
+    static class DisjointSet{
+        private int[] parent,rank;
+        DisjointSet(int n){
+            parent=new int[n];
+            rank=new int[n];
+            for(int i=0;i<n;i++){
+                parent[i]=i;
+                rank[i]=0;
+            }
+        }
 
+        int find(int x){
+            if(parent[x]==x){
+                return x;
+            }
+            parent[x]=find(parent[x]);
+            return parent[x];
+        }
+
+        void union(int u,int v){
+            int pu=find(u);
+            int pv=find(v);
+            if(pu==pv){
+                return ;
+            }
+            if(rank[pu]<rank[pv]){
+                parent[pu]=pv;
+            }
+            else if(rank[pu]>rank[pv]){
+                parent[pv]=pu;
+            }
+            else{
+                parent[pu]=pv;
+                rank[pv]++;
+            }
+        }
+
+    }
+
+
+static boolean hasCycle(List<List<Integer>> graph,int V){
+        DisjointSet dsu=new DisjointSet( V);
+        for(int u=0;u<V;u++){
+            for(int v:graph.get(u)){
+                if(u<v){
+                    int pu=dsu.find(u);
+                    int pv=dsu.find(v);
+                    if(pu==pv){
+
+                        return true;
+                    }
+                    dsu.union(u,v);
+                }
+            }
+        }
+        return false;
+}
 
     static void addEdge(List<List<Integer>> adj,int u,int v){
         adj.get(u).add(v);
@@ -80,9 +136,10 @@ public class DetectCycleUndirectedGraph {
             addEdge(graph,1,2);
             addEdge(graph,2,5);
             addEdge(graph,2,4);
-            addEdge(graph,4,5  );
-//            addEdge(graph,5,6);
-//            addEdge(graph,6,7);
+//            addEdge(graph,4,5  );
+            addEdge(graph,5,6);
+            addEdge(graph,6,7);
+//            addEdge(graph,5,7);
 
 
             boolean result=hasCycle(graph,V);
